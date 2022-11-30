@@ -12,7 +12,7 @@
 * @Attention         如需引用请注明出处，谢谢合作！
 * @Version           v0.0.10
 * @Suit              脚本已使用Env做了兼容处理，理论适配多个工具，请自行测试
-* @ScriptURL         https://github.com/ddgksf2013/Scripts/raw/main/ali.js
+* @ScriptURL         https://github.com/ddgksf2013/Scripts/raw/master/ali.js
 * ==/UserScript==
 
 
