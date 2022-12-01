@@ -2,8 +2,8 @@
 应用名称：自用B站去广告脚本
 脚本作者：Cuttlefish
 微信账号：公众号墨鱼手记
-更新时间：2022-11-08
-脚本版本：(74) 
+更新时间：2022-12-01
+脚本版本：(75) 
 通知频道：https://t.me/ddgksf2021
 问题反馈：ddgksf2013@163.com
 */
@@ -36,7 +36,11 @@ if (magicJS.read(blackKey)) {
                             for (let banner of item["banner_item"]) {
                                 if (banner["type"] === "ad") {
                                     continue;
-                                } else if (banner["static_banner"] && banner["static_banner"]["is_ad_loc"] != true) {
+                                }
+                                else if (banner["type"] === "static") {
+                                    continue;
+                                }
+                                else if (banner["static_banner"] && banner["static_banner"]["is_ad_loc"] != true) {
                                     bannerItems.push(banner);
                                 }
                             }
