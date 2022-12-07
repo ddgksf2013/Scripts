@@ -2,8 +2,8 @@
 应用名称：自用B站去广告脚本
 脚本作者：Cuttlefish
 微信账号：公众号墨鱼手记
-更新时间：2022-12-02
-脚本版本：(77) 
+更新时间：2022-12-07
+脚本版本：(78) 
 通知频道：https://t.me/ddgksf2021
 问题反馈：ddgksf2013@163.com
 */
@@ -324,7 +324,7 @@ if (magicJS.read(blackKey)) {
                 }
                 break;
             default:
-                magicJS.logWarning("触发意外的请求处理，请确认脚本或复写配置正常。");
+                //magicJS.logWarning("触发意外的请求处理，请确认脚本或复写配置正常。");
                 break;
         }
     } else {
