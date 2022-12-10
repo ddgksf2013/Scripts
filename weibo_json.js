@@ -3,7 +3,7 @@
 脚本作者：Cuttlefish
 微信账号：公众号墨鱼手记
 更新时间：2022-12-10
-脚本版本：(0.0.7)
+脚本版本：(0.0.8)
 通知频道：https://t.me/ddgksf2021
 问题反馈：ddgksf2013@163.com
 */
@@ -40,7 +40,12 @@ function modifiedUserCenter(data) {
 	if(!data.data) {
 		return data;
 	}
-	data.data.cards=Object.values(data.data.cards).filter((item) => !(item.items[0].type=='personal_vip'));
+	if(data.data.length===0){
+		return data;
+	}
+	if(data.data.cards){
+		data.data.cards=Object.values(data.data.cards).filter((item) => !(item.items[0].type=='personal_vip'));
+	}
 	return data;
 }
 function removeTopics(data) {
