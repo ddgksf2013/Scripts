@@ -10,7 +10,7 @@
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 原作者库：https://github.com/zmqcherish
 > 问题反馈：ddgksf2013@163.com
-> 脚本版本：V0.0.3
+> 脚本版本：V0.0.4
 > 特别提醒：如需转载请注明出处，谢谢合作！
 > 脚本声明：特别感谢Zmqcherish的付出，本脚本只是在他原创脚本的基础上优化自用
 > 特别说明：⚠️⚠️⚠️
@@ -41,7 +41,6 @@ hostname=api.weibo.cn, mapi.weibo.com, *uve.weibo.com, new.vip.weibo.cn
 
 
 
-const version = 'ddgksf2013.0.0.1';
 
 /*主要的选项配置*/
 const mainConfig = {
