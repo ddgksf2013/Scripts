@@ -4,8 +4,7 @@
 > 软件版本：12.12.0
 > 脚本作者：@Zmqcherish, @Cuttlefish
 > 微信账号：墨鱼手记
-> 解锁说明：解锁会员权限
-> 更新时间：2022-12-12
+> 更新时间：2022-12-13
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 原作者库：https://github.com/zmqcherish
