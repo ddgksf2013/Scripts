@@ -3,8 +3,8 @@
 *应用名称：自用微博国际版去广告脚本
 *脚本作者：Cuttlefish
 *微信账号：公众号墨鱼手记
-*更新时间：2022-12-10
-*脚本版本：(0.0.10)
+*更新时间：2022-12-12
+*脚本版本：(0.0.11)
 *通知频道：https://t.me/ddgksf2021
 *问题反馈：ddgksf2013@163.com
 
@@ -15,7 +15,8 @@ const modifyTimeUrls = ['statuses/friends_timeline', 'statuses/unread_hot_timeli
 const modifyOtherUrls = {
 	'ct=feed&a=trends': 'removeTopics',/* 屏蔽探索页面下的一些Topic */
 	'search_topic'    : 'modifiedSearchTopic',
-	'user_center'     : 'modifiedUserCenter'
+	'user_center'     : 'modifiedUserCenter',
+	'interface/sdk/sdkad.php': 'removePhpScreenAds'  			//Php开屏广告
 }
 function getModifyMethod(url) {
 	for (const s of modifyCardsUrls) {
@@ -102,6 +103,25 @@ function removeTimeLine(data) {
 	}
 	data.statuses = newStatuses;
 }
+function removePhpScreenAds(data){
+	if(!data.ads){
+		return data;
+	}
+	data.show_push_splash_ad=false;
+	data.background_delay_display_time = 24*60*60;
+	data.lastAdShow_delay_display_time = 24*60*60*7;
+	data.realtime_ad_video_stall_time  = 24*60*60;
+	data.realtime_ad_timeout_duration  = 24*60*60*7;
+	for (let item of data["ads"]) {
+        item["displaytime"]            = 0; 
+        item["displayintervel"]        = 24*60*60;;
+        item["allowdaydisplaynum"]     = 0; 
+		item["displaynum"]             = 0;
+        item["begintime"]              = "2029-12-30 00:00:00";
+		item["endtime"]                = "2029-12-30 23:59:59";
+    }
+	return data;
+}
 function removeCards(data) {
 	if(!data.cards) {
 		return;
@@ -137,8 +157,11 @@ var url = $request.url;
 let method = getModifyMethod(url);
 if(method) {
 	var func = eval(method);
-	let data = JSON.parse(body);
+	let data = JSON.parse(body.match(/\{.*\}/)[0]);
 	new func(data);
 	body = JSON.stringify(data);
+	if(method=='removePhpScreenAds'){
+		body =JSON.stringify(data)+"OK";
+	}
 }
 $done({body});
