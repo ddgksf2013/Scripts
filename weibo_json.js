@@ -17,7 +17,7 @@
 ***********************************/	  
 
 
-const version = 'V2.0.17';
+const version = 'V2.0.18';
 
 /*主要的选项配置*/
 const mainConfig = {
@@ -110,7 +110,8 @@ const otherUrls = {
 	'wbapplua/wbpullad.lua': 'removeLuaScreenAds',   			//Lua开屏广告
 	'interface/sdk/sdkad.php': 'removePhpScreenAds',  			//Php开屏广告
 	'ct=feed&a=trends': 'removeTopics',                         /* 国际版屏蔽探索页面下的一些Topic */
-	'user_center'     : 'modifiedUserCenter'                    /*国际版用户中心*/
+	'user_center'     : 'modifiedUserCenter',                    /*国际版用户中心*/
+	'a=get_coopen_ads': 'removeIntlOpenAds'
 }
 
 
@@ -131,6 +132,22 @@ function getModifyMethod(url) {
 		}
 	}
 	return null;
+}
+function removeIntlOpenAds(data) {
+	if(!data.data||data.data.length===0) {
+		return data;
+	}
+	data.data.ad_list=[];
+	data.data.gdt_video_ad_ios=[];
+	data.data.display_ad=0;
+	data.data.ad_ios_id=null;
+	data.data.app_ad_ios_id=null;
+	data.data.reserve_ad_ios_id="";
+	data.data.reserve_app_ad_ios_id="";
+	data.data.ad_duration = 24*60*60*7;
+	data.data.ad_cd_interval=24*60*60*7;
+	data.data.pic_ad=[];
+	return data;
 }
 /*国际版用户中心*/
 function modifiedUserCenter(data) {
