@@ -17,7 +17,7 @@
 ***********************************/	  
 
 
-const version = 'V2.0.19';
+const version = 'V2.0.20';
 
 /*主要的选项配置*/
 const mainConfig = {
@@ -286,6 +286,9 @@ function removeSearch(data) {
 		}
 	}
 	data.items = newItems;
+	if(data.loadedInfo){
+		data.loadedInfo.searchBarContent=[];
+	}
 	log('remove_search success');
 	return data;
 }
