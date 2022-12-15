@@ -10,6 +10,7 @@
 > 问题反馈：ddgksf2013@163.com
 > 特别提醒：如需转载请注明出处，谢谢合作！
 > 脚本声明：特别感谢Zmqcherish的付出，本脚本只是在他原创脚本的基础上优化自用
+> 敬请注意：本脚本仅适用QuantumultX工具
 > 原创地址：https://github.com/zmqcherish/proxy-script/raw/main/weibo.conf
 > 特别说明：⚠️⚠️⚠️
           本脚本仅供学习交流使用，禁止转载售卖
@@ -18,7 +19,7 @@
 ***********************************/	  
 
 
-const version = 'V2.0.31';
+const version = 'V2.0.32';
 
 /*主要的选项配置*/
 const mainConfig = {
@@ -731,7 +732,7 @@ function log(data) {
 var body = $response.body;
 var url = $request.url;
 let method = getModifyMethod(url);
-if(method) {
+if(method&&typeof $task!== "undefined") {
 	log(method);
 	var func = eval(method);
 	let data = JSON.parse(body.match(/\{.*\}/)[0]);
@@ -741,5 +742,4 @@ if(method) {
 		body =JSON.stringify(data)+"OK";
 	}
 }
-
 $done({ body });
