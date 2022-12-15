@@ -3,7 +3,7 @@
 > 应用名称：墨鱼自用微博&微博国际版净化
 > 脚本作者：@Zmqcherish, @Cuttlefish
 > 微信账号：墨鱼手记
-> 更新时间：2022-12-14
+> 更新时间：2022-12-15
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 原作者库：https://github.com/zmqcherish
@@ -18,7 +18,7 @@
 ***********************************/	  
 
 
-const version = 'V2.0.33';
+const version = 'V2.0.34';
 
 /*主要的选项配置*/
 const mainConfig = {
@@ -590,9 +590,9 @@ function removeMediaHomelist(data) {
 
 //评论区相关和推荐内容
 function removeComments(data) {
-	let delType = ['广告'];
-	if(mainConfig.removeRelateItem) delType.push('相关内容');
-	if(mainConfig.removeRecommendItem) delType.push(...['推荐', '热推']);
+	let delType = ['广告','廣告'];
+	if(mainConfig.removeRelateItem) delType.push(...['相关内容','相關內容']);
+	if(mainConfig.removeRecommendItem) delType.push(...['推荐', '热推','推薦','熱推']);
 	// if(delType.length === 0) return;
 	let items = data.datas || [];
 	if(items.length === 0) return;
