@@ -6,9 +6,9 @@
 
 2、禁用配置文件【DNS】下的no-system或将【DNS】下内容全部删除
 
-3、清除QX的DNS缓存，添加定时脚本from@unknowntokyo(每隔12清理一次）
+3、清除QX的DNS缓存，添加定时脚本from@unknowntokyo(每天晚9点清理一次）
 
-0 */12 * * * https://github.com/ddgksf2013/Scripts/raw/master/clear_qxdns_cache.js
+0 21 * * * https://github.com/ddgksf2013/Scripts/raw/master/clear_qxdns_cache.js
 
 以上三种方式，可自行尝试，选择适合自己的使用
 
