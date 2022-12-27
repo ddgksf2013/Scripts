@@ -1,5 +1,4 @@
 /***********************************
-
 > 应用名称：墨鱼自用QX微博&微博国际版净化
 > 脚本作者：@Zmqcherish, @Cuttlefish
 > 微信账号：墨鱼手记
@@ -10,8 +9,7 @@
 > 问题反馈：ddgksf2013@163.com
 > 特别提醒：如需转载请注明出处，谢谢合作！
 > 脚本声明：特别感谢Zmqcherish的付出，本脚本只是在他原创脚本的基础上优化QX自用
-> 原创地址：https://github.com/zmqcherish/proxy-script/raw/main/weibo.conf
-	
+> 原创地址：https://github.com/zmqcherish/proxy-script/raw/main/weibo.conf	
 ***********************************/	  
 
 
