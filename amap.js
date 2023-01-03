@@ -27,7 +27,7 @@
 
 [mitm] 
 
-hostname=oauth.secure.pixiv.net
+hostname=optimus-ads.amap.com, m5.amap.com, sns.amap.com
 
 ***********************************/
 
