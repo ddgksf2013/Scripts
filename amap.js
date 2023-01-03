@@ -23,6 +23,7 @@
 ^https?:\/\/sns\.amap\.com\/ws\/msgbox\/pull url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
 ^https?:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaas url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
 ^https?:\/\/m5\.amap\.com\/ws\/shield\/search\/new_hotword url reject
+^https?:\/\/m5\.amap\.com\/ws\/shield\/scene\/recommend url reject-dict
 ^https?:\/\/optimus-ads\.amap\.com\/uploadimg\/\w+\.gif url reject-img
 
 [mitm] 
