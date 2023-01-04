@@ -18,8 +18,6 @@
 
 1、QuantumultX本地添加分流
 host, amdc.m.taobao.com, reject
-host, page.amap.com, reject
-host, www.qchannel01.cn, reject
 
 2、卸载高德地图APP并重新安装（如果已安装）
 
