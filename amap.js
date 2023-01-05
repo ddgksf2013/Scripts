@@ -4,8 +4,8 @@
 > 软件版本：12.2.10
 > 脚本作者：ddgksf2013
 > 微信账号：墨鱼手记
-> 更新时间：2023-01-04
-> 脚本版本：V1.0.6
+> 更新时间：2023-01-05
+> 脚本版本：V1.0.7
 > 脚本功能：处理开屏、首页下方推广、我的页面推广、搜索框热词、搜索框下方热榜、首页顶部推广、首页左上角gif
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
@@ -28,19 +28,20 @@ host, amdc.m.taobao.com, reject
 
 [rewrite_local]
 
-# ～ 高德地图☆净化（2023-01-04）@ddgksf2013
-^https?:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-^https?:\/\/m5\.amap\.com\/ws\/asa\/ads_attribution url reject
-^https?:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-^https?:\/\/sns\.amap\.com\/ws\/msgbox\/pull url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-^https?:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaas url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-^https?:\/\/m5\.amap\.com\/ws\/shield\/search\/new_hotword url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-^https?:\/\/m5\.amap\.com\/ws\/shield\/scene\/recommend url reject-dict
-^https?:\/\/optimus-ads\.amap\.com\/uploadimg\/\w+\.gif url reject-img
+# ～ 高德地图☆净化（2023-01-05）@ddgksf2013
+^https?:\/\/.*\.amap\.com\/ws\/boss\/order\/car\/access_guide url reject-dict
+^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/main-page url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
+^https?:\/\/.*\.amap\.com\/ws\/asa\/ads_attribution url reject
+^https?:\/\/.*\.amap\.com\/ws\/valueadded\/alimama\/splash_screen url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
+^https?:\/\/.*\.amap\.com\/ws\/msgbox\/pull url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
+^https?:\/\/.*\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaas url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
+^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/new_hotword url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
+^https?:\/\/.*\.amap\.com\/ws\/shield\/scene\/recommend url reject-dict
+^https?:\/\/.*\.amap\.com\/uploadimg\/\w+\.gif url reject-img
 
 [mitm] 
 
-hostname=optimus-ads.amap.com, m5.amap.com, sns.amap.com
+hostname=*amap.com
 
 ***********************************/
 
