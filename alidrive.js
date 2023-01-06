@@ -3,7 +3,7 @@
 > 应用名称：阿里云盘
 > 脚本作者：Cuttlefish
 > 微信账号：墨鱼手记
-> 更新时间：2023-01-05
+> 更新时间：2023-01-06
 > 通知频道：https://t.me/ddgksf2021
 > 投稿助手：https://t.me/ddgksf2013_bot
 > 脚本功能：优化首页display
@@ -17,7 +17,7 @@
 [rewrite_local]
 
 # ～ 阿里云盘（2023-01-05）@ddgksf2013
-^https?:\/\/api\.aliyundrive\.com\/apps\/v\d\/users\/apps\/widgets$ url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/alidrive.js
+^https?:\/\/api\.aliyundrive\.com\/apps\/v\d\/users\/(apps|home)\/widgets$ url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/alidrive.js
 
 [mitm]
 
