@@ -23,7 +23,6 @@ host, amdc.m.taobao.com, reject
 
 3、在QuantumultX处于运行环境下打开高德地图并登陆
 
-4、如果QuantumultX未运行就打开高德地图会致使脚本不生效需卸载重新安装（后续解决）
 
 [rewrite_local]
 
