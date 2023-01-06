@@ -1,7 +1,6 @@
 /***********************************
 
 > 应用名称：高德地图APP净化
-> 软件版本：12.2.10
 > 脚本作者：ddgksf2013
 > 微信账号：墨鱼手记
 > 更新时间：2023-01-05
@@ -29,7 +28,7 @@ host, amdc.m.taobao.com, reject
 [rewrite_local]
 
 # ～ 高德地图☆净化（2023-01-05）@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/boss\/order\/car\/access_guide url reject-dict
+#^https?:\/\/.*\.amap\.com\/ws\/boss\/order\/car\/access_guide url reject-dict
 ^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/main-page url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
 ^https?:\/\/.*\.amap\.com\/ws\/asa\/ads_attribution url reject
 ^https?:\/\/.*\.amap\.com\/ws\/valueadded\/alimama\/splash_screen url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
