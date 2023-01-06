@@ -2,7 +2,7 @@
 
 https://t.me/ddgksf2013
 
-12306 去除倒计时 made by ddgksf2013 on 2022-12-29
+12306 去除倒计时 made by ddgksf2013 on 2023-01-06
 
 使用本重写，请务必在本地添加分流 host, ad.12306.cn, direct
 
