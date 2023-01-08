@@ -4,7 +4,7 @@
 > 脚本作者：ddgksf2013
 > 微信账号：墨鱼手记
 > 更新时间：2023-01-07
-> 脚本功能：请自行参考见下方[# > ]注释
+> 脚本功能：请自行参考见下方 [# > ] 注释
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 问题反馈：ddgksf2013@163.com
@@ -18,6 +18,8 @@
 
 [rewrite_local]
 
+# > 高德地图_请自行添加本地分流@ddgksf2013
+host, amdc.m.taobao.com, reject
 # > 高德地图_Tip请求@ddgksf2013
 ^https?:\/\/.*\.amap\.com\/ws\/boss\/order_web\/\w{8}_information url reject-200
 # > 高德地图_首页底部处理@ddgksf2013
