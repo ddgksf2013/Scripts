@@ -19,7 +19,7 @@
 [rewrite_local]
 
 # > 高德地图_请自行添加本地分流@ddgksf2013
-host, amdc.m.taobao.com, reject
+;host, amdc.m.taobao.com, reject
 # > 高德地图_Tip请求@ddgksf2013
 ^https?:\/\/.*\.amap\.com\/ws\/boss\/order_web\/\w{8}_information url reject-200
 # > 高德地图_首页底部处理@ddgksf2013
