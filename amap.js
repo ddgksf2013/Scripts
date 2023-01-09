@@ -1,53 +1,13 @@
-/***********************************
-
+/***********************************************
 > 应用名称：高德地图☆净化
-> 脚本作者：ddgksf2013
+> 脚本作者：@ddgksf2013
 > 微信账号：墨鱼手记
-> 更新时间：2023-01-07
-> 脚本功能：请自行参考见下方 [# > ] 注释
+> 更新时间：2022-01-09
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 问题反馈：ddgksf2013@163.com
-> 使用说明：请卸载高德地图重装并在本地添加下面分流
-> 补充分流：host, amdc.m.taobao.com, reject
 > 特别提醒：如需转载请注明出处，谢谢合作！
-> 特别说明：⚠️⚠️⚠️
-          本脚本仅供学习交流使用，禁止转载、售卖
-          ⚠️⚠️⚠️
-
-
-[rewrite_local]
-
-# > 高德地图_请自行添加本地分流@ddgksf2013
-;host, amdc.m.taobao.com, reject
-# > 高德地图_Tip请求@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/boss\/order_web\/\w{8}_information url reject-200
-# > 高德地图_首页底部处理@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/main-page url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-# > 高德地图_通用广告请求@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/asa\/ads_attribution url reject
-# > 高德地图_开屏广告@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/valueadded\/alimama\/splash_screen url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-# > 高德地图_首页顶部推广@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/msgbox\/pull url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-# > 高德地图_我的页面@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaas url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-# > 高德地图_搜索框热词@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/new_hotword url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/amap.js
-# > 高德地图_搜索框scene@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/shield\/scene\/recommend url reject-dict
-# > 高德地图_首页左上角gif@ddgksf2013
-^https?:\/\/.*\.amap\.com\/uploadimg\/\w+\.gif url reject-img
-# > 高德地图_首页右中'2022出行报告'[自行添加]@ddgksf2013
-;^https?:\/\/img\.alicdn\.com\/imgextra\/i1\/O1CN01z5u64r1EdKvtRa19q_!!6000000000374-2-tps-120-120\.png
-# > 高德地图_左下天气@ddgksf2013
-^https?:\/\/.*\.amap\.com\/ws\/valueadded\/weather url reject-dict
-
-[mitm] 
-
-hostname=*amap.com
-
-***********************************/
+***********************************************/	
 
 
 
