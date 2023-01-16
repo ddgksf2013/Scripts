@@ -5,6 +5,7 @@
 > 更新时间：2023-01-16
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
+> 原作者库：https://github.com/app2smile
 > 问题反馈：ddgksf2013@163.com
 > 特别提醒：如需转载请注明出处，谢谢合作！
 > 脚本声明：本脚本是在app2smile原创基础上优化自用
