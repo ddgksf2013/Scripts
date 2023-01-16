@@ -77,6 +77,11 @@ if(url.includes("Dynamic/DynAll")){
     if(logProcessFlag) console.log('视频播放页View/View');
     const viewReplyType = biliRoot.lookupType("bilibili.app.view.ViewReply");
     let viewReplyObj = viewReplyType.decode(unGzipBody);
+    
+    if(viewReplyObj.cmIpad?.length){/*去除ipad广告*/
+        viewReplyObj.cmIpad=[];
+    }
+    
     if(!viewReplyObj.cms?.length){
         if(logProcessFlag) console.log('cms为空');
     } else {
