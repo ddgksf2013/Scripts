@@ -53,7 +53,7 @@ if(url.includes("Dynamic/DynAll")){
     } else {
         let adCount = 0;
         dynAllReplyObj.dynamicList.list = dynAllReplyObj.dynamicList.list.filter(item => {
-            if(item.cardType !== 15){
+            if(item.cardType !== 15&&item.cardType !=="banner"){
                 return true;
             }
             adCount++;
