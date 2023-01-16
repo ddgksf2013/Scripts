@@ -54,7 +54,7 @@ if(url.includes("Dynamic/DynAll")){
     if(dynAllReplyObj.dynamicList?.list?.length){
         let adCount = 0;
         //关键词比较模糊，可能有误杀，后续完善，也可邮件反馈
-        let keywords = ["红包", "拼多多", "京东", "天猫"];
+        let keywords = ["红包", "拼多多", "京东", "天猫", "淘宝"];
         let pattern = new RegExp(keywords.join("|"));    
         dynAllReplyObj.dynamicList.list = dynAllReplyObj.dynamicList.list.filter(item => {
             if(item.cardType !== 15 && item.cardType !== 19 && !pattern.test(JSON.stringify(item.extend?.origDesc))){
