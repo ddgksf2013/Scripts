@@ -2,7 +2,7 @@
 > 应用名称：酷安净化
 > 脚本作者：ddgksf2013
 > 微信账号：墨鱼手记
-> 更新时间：2023-01-18
+> 更新时间：2023-01-21
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 问题反馈：ddgksf2013@163.com
@@ -36,6 +36,6 @@ hostname=api.coolapk.com
 
 
 
-const version = 'V1.0.8';
+const version = 'V1.0.9';
  
-if(-1!=$request.url.indexOf("replyList")){var a=JSON.parse($response.body);a.data.length>0&&(a.data=Object.values(a.data).filter(a=>a.id)),$done({body:JSON.stringify(a)})}else if(-1!=$request.url.indexOf("indexV8")){var a=JSON.parse($response.body);a.data=Object.values(a.data).filter(a=>!("sponsorCard"==a.entityTemplate||8639==a.entityId||33006==a.entityId||32557==a.entityId||-1!=a.title.indexOf("值得买")||-1!=a.title.indexOf("红包"))),$done({body:JSON.stringify(a)})}else if(-1!=$request.url.indexOf("dataList")){var a=JSON.parse($response.body);a.data=Object.values(a.data).filter(a=>!("sponsorCard"==a.entityTemplate||"精选配件"==a.title)),$done({body:JSON.stringify(a)})}else if(-1!=$request.url.indexOf("detail")){var a=JSON.parse($response.body);a.data?.hotReplyRows?.length>0&&(a.data.hotReplyRows=Object.values(a.data.hotReplyRows).filter(a=>a.id)),a.data?.topReplyRows?.length>0&&(a.data.topReplyRows=Object.values(a.data.topReplyRows).filter(a=>a.id)),a.data?.include_goods_ids&&(a.data.include_goods_ids=[]),a.data?.include_goods&&(a.data.include_goods=[]),a.data?.detailSponsorCard&&(a.data.detailSponsorCard=[]),$done({body:JSON.stringify(a)})}else $done($response);
+if(-1!=$request.url.indexOf("replyList")){var t=JSON.parse($response.body);t.data.length&&(t.data=t.data.filter(t=>t.id)),$done({body:JSON.stringify(t)})}else if(-1!=$request.url.indexOf("indexV8")){var t=JSON.parse($response.body);t.data=t.data.filter(t=>!("sponsorCard"==t.entityTemplate||8639==t.entityId||29349==t.entityId||33006==t.entityId||32557==t.entityId||-1!=t.title.indexOf("值得买")||-1!=t.title.indexOf("红包"))),$done({body:JSON.stringify(t)})}else if(-1!=$request.url.indexOf("dataList")){var t=JSON.parse($response.body);t.data=t.data.filter(t=>!("sponsorCard"==t.entityTemplate||-1!=t.title.indexOf("精选配件"))),$done({body:JSON.stringify(t)})}else if(-1!=$request.url.indexOf("detail")){var t=JSON.parse($response.body);t.data?.hotReplyRows?.length&&(t.data.hotReplyRows=t.data.hotReplyRows.filter(t=>t.id)),t.data?.topReplyRows?.length&&(t.data.topReplyRows=t.data.topReplyRows.filter(t=>t.id)),t.data?.include_goods_ids&&(t.data.include_goods_ids=[]),t.data?.include_goods&&(t.data.include_goods=[]),t.data?.detailSponsorCard&&(t.data.detailSponsorCard=[]),$done({body:JSON.stringify(t)})}else $done($response);
