@@ -11,14 +11,14 @@
 * @ScriptFunction    FileBall挂载阿里云盘、Alist，播放云盘中的音乐和视频文件
 * @Attention         如需引用请注明出处，谢谢合作！
 * @Version           v2.0.21
-* @Suit              仅适用QX
-* @ScriptURL         https://github.com/ddgksf2013/Scripts/raw/main/ali.js
+* @Suit              仅适配QuantumultX工具
+* @ScriptURL         https://github.com/ddgksf2013/Scripts/raw/master/ali.js
 * ==/UserScript==
 
 
 [rewrite_local]
 
-^https?:\/\/.*\.example\.com url script-analyze-echo-response https://github.com/ddgksf2013/Scripts/raw/main/ali.js
+^https?:\/\/.*\.example\.com url script-analyze-echo-response https://github.com/ddgksf2013/Scripts/raw/master/ali.js
 
 [mitm]
 
