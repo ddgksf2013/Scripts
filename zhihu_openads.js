@@ -23,7 +23,8 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/zhe
 ^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2 url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/zhihu_openads.js
 
 [mitm]
-hostname=gg.caixin.com
+
+hostname=api.zhihu.com
 
 ***********************************/
 
