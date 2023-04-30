@@ -13,7 +13,7 @@
 
 [rewrite_local]
 
-^https?:\/\/run\.api\.qyfxgd\.cn:\d+\/api\/v\d\/movie\/index_recommend url script-response-body https://github.com/ddgksf2013/Scripts/new/master/555Ad.js
+^https?:\/\/run\.api\.qyfxgd\.cn:\d+\/api\/v\d\/movie\/index_recommend url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/555Ad.js
 ^https?:\/\/run\.api\.qyfxgd\.cn:\d+\/api\/v\d\/advert url reject
 
 [mitm]
