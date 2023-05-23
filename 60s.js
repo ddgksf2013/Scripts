@@ -4,7 +4,7 @@
 * @Author            Cuttlefish
 * @TgChannel         https://t.me/ddgksf2021
 * @WechatID          墨鱼手记
-* @UpdateTime        2022-05-23
+* @UpdateTime        2023-05-23
 * @ScriptFunction    快速浏览今天世界新闻
 * @ScriptURL         https://github.com/ddgksf2013/Scripts/raw/main/60s.js
 * ==/UserScript==
