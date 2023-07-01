@@ -8,12 +8,13 @@
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 问题反馈：ddgksf2013@163.com
 > 特别提醒：如需转载请注明出处，谢谢合作！
-> 脚本说明：去除网页推广
+> 网站地址：https://www.ahhhhfs.com
+> 脚本说明：去除网页推广、网页广告
 
 
 [rewrite_local]
 
-^https?:\/\/.*ahhhhfs.com\/($|[0-9a-zA-Z]+\/) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/ahfs.js
+^https?:\/\/.*ahhhhfs.com\/($|[0-9a-zA-Z]+\/$) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/ahfs.js
 
 [mitm]
 
