@@ -14,7 +14,7 @@
 
 [rewrite_local]
 
-^https?:\/\/.*ahhhhfs.com\/($|[0-9a-zA-Z_/]+\/$) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/ahfs.js
+^https?:\/\/.*ahhhhfs\.com\/($|[0-9a-zA-Z_/]+\/$) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/ahfs.js
 
 [mitm]
 
