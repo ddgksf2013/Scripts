@@ -1,3 +1,2 @@
-var body = $response.body
-    .replace(/<head>/, '<head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ddgksf2013/Html/cupbox.css" type="text/css">');
+var body = $response.body.replace(/<head>/, '<head><style>.mobile-nav, .model, .a4-box[class^="jsx-"], .cupfox, .swiper, .adsbygoogle {display:none!important} </style>');
 $done({ body });
