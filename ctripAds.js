@@ -3,7 +3,7 @@
 > 应用名称：墨鱼自用携程旅行小程序去广告脚本
 > 脚本作者：@ddgksf2013
 > 微信账号：墨鱼手记
-> 更新时间：2023-07-25
+> 更新时间：2023-07-28
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 问题反馈：ddgksf2013@163.com
@@ -22,6 +22,9 @@
 ^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/tripAds\.json url reject-200
 # > 携程旅行小程序_热搜词@ddgksf2013
 ^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/json\/gethotsearchrespbysmallprogram url reject-200
+# > 携程旅行小程序_航班页信息流@ddgksf2013
+^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/flightHomeSecondService url reject-200
+
 
 
 [mitm]
