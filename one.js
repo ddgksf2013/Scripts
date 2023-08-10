@@ -4,7 +4,7 @@
 > 脚本作者：@ddgksf2013
 > 下载地址：https://apps.apple.com/cn/app/id6456038162
 > 微信账号：墨鱼手记
-> 更新时间：2023-06-05
+> 更新时间：2023-08-10
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 问题反馈：ddgksf2013@163.com
