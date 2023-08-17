@@ -1,7 +1,7 @@
 /*
 WEBSITE: https://biliuniverse.io
 README: https://github.com/BiliUniverse
-1.0.3
+1.0.4
 */
 
 const $ = new Env("?? BiliBili: ??? ADBlock v0.3.2(1) response.beta");
@@ -11,7 +11,7 @@ const DataBase = {
 	"ADBlock":{
 		"Settings":{
 			"Switch":true,
-			"Detail":{"splash":true,"feed":true,"activity":false,"story":true,"cinema":true,"view":true,"search":true,"commandDms":false,"colorfulDms":false,"MainList":true,"xlive":true,"Hot_search":true,"Hot_topics":true,"Most_visited":true,"Dynamic_adcard":true}
+			"Detail":{"splash":true,"feed":true,"activity":false,"story":true,"cinema":true,"view":true,"search":true,"commandDms":false,"colorfulDms":false,"MainList":true,"xlive":true,"Hot_search":true,"Hot_topics":true,"Most_visited":false,"Dynamic_adcard":true}
 		}
 	},
 	"Default": {
