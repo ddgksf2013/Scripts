@@ -45,7 +45,7 @@ hostname = mp.weixin.qq.com
 
 
 
-
-var body = $response.body
-    .replace(/<\/script>/, 'setTimeout(()=>window.history.back(),6000); </script>');
+var possibleTimeouts = [6000, 7000, 8000, 9000, 10000,11000,12000];
+var randomTimeout = possibleTimeouts[Math.floor(Math.random() * possibleTimeouts.length)];
+var body = $response.body.replace(/<\/script>/, `setTimeout(() => window.history.back(), ${randomTimeout}); </script>`);
 $done({ body });
