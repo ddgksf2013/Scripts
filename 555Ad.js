@@ -3,7 +3,7 @@
 > 应用名称：墨鱼自用555去广告脚本
 > 脚本作者：@ddgksf2013
 > 微信账号：墨鱼手记
-> 更新时间：2023-07-25
+> 更新时间：2023-11-25
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 问题反馈：ddgksf2013@163.com
@@ -18,7 +18,7 @@
 
 [mitm]
 
-hostname = run.api.qyfxgd.cn, *.weilai555.com, *.ecoliving168.com
+hostname = *.qyfxgd.cn, *.weilai555.com, *.ecoliving168.com
 
 **********************************************/
 
