@@ -1,3 +1,14 @@
+/*
+
+说明：此脚本是在原作@zZPiglet基础修复Bug自用
+原址：https://raw.githubusercontent.com/zZPiglet/Task/master/asset/UnblockURLinWeChat.js
+
+hostname = weixin110.qq.com, security.wechat.com,
+
+^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\? url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/weixin110.js
+
+*/
+
 let persisVal = read("UnblockURLinWeChat");
 let useCache = persisVal.useCache === "true"; //是否在微信中用快照显示被封禁的链接
 let forceRedirect = persisVal.forceRedirect === "true"; //是否在微信中进行强制重定向，允许的情况下可能出现循环重定向
