@@ -16,7 +16,7 @@
     
 [rewrite_local]
 
-^https?:\/\/.*v2ex\.com($|\/t\/\d+) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/v2ex.js
+^https?:\/\/.*v2ex\.com\/($|t\/\d+) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/v2ex.js
 
 [mitm] 
 
