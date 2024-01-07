@@ -6,8 +6,9 @@ var body = $response.body.replace(
     <style>
       .module-adslist, 
       .player-rm > a[target="_blank"],
-      .popupShow,
-      .container-slide{
+      #popup,
+      .container-slide,
+      a[href*="/dsf88.cc"]{
         display: none !important;
       }
     </style>`
