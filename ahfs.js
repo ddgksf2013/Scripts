@@ -14,11 +14,11 @@
 
 [rewrite_local]
 
-^https?:\/\/.*xbwpys\.com\/($|[0-9a-zA-Z_/]+\/$) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/ahfs.js
+^https?:\/\/.*(xbwpys|ahhhhfs)\.com\/($|[0-9a-zA-Z_/]+\/$) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/ahfs.js
 
 [mitm]
 
-hostname = *.xbwpys.com
+hostname = *.xbwpys.com, *.ahhhhfs.com
 
 **********************************************/
 
