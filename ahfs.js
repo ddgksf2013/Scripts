@@ -3,7 +3,7 @@
 > 应用名称：ahhhhfs网站净化
 > 脚本作者：@ddgksf2013
 > 微信账号：墨鱼手记
-> 更新时间：2023-07-21
+> 更新时间：2024-01-28
 > 通知频道：https://t.me/ddgksf2021
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 问题反馈：ddgksf2013@163.com
@@ -14,11 +14,11 @@
 
 [rewrite_local]
 
-^https?:\/\/.*ahhhhfs\.com\/($|[0-9a-zA-Z_/]+\/$) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/ahfs.js
+^https?:\/\/.*xbwpys\.com\/($|[0-9a-zA-Z_/]+\/$) url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/ahfs.js
 
 [mitm]
 
-hostname = *.ahhhhfs.com
+hostname = *.xbwpys.com
 
 **********************************************/
 
