@@ -9,10 +9,7 @@
 > 特别提醒：如需转载请注明出处，谢谢合作！
 ***********************************************/	
 
-const version = 'V1.0.1';
+const version = 'V1.0.2';
 
 
-function setHeaderValue(e,a,n){var o=a.toLowerCase();o in e?e[o]=n:e[a]=n}
-var modifiedHeaders=$request['headers'];
-setHeaderValue(modifiedHeaders, 'X-RevenueCat-ETag', '');
-$done({ headers: modifiedHeaders })
+function setHeaderValue(e,a,d){var r=a.toLowerCase();r in e?e[r]=d:e[a]=d}var modifiedHeaders=$request.headers;setHeaderValue(modifiedHeaders,"X-RevenueCat-ETag",""),$done({headers:modifiedHeaders});
