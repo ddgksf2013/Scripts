@@ -7,7 +7,7 @@
 > 贡献投稿：https://t.me/ddgksf2013_bot
 > 问题反馈：ddgksf2013@163.com
 > 特别提醒：如需转载请注明出处，谢谢合作！
-> 脚本声明：本脚本是在Zmqcherish[https://github.com/zmqcherish]原创基础上优化自用
+> 脚本声明：本脚本是在[https://github.com/zmqcherish]原创基础上优化自用
 > 脚本声明：若有侵犯原作者权利，请邮箱联系删除
 ***********************************************/	  
 
