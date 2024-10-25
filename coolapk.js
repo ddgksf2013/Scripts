@@ -26,7 +26,7 @@
 # > 酷安_商品推广@ddgksf2013
 ^https?:\/\/api.coolapk.com\/v6\/feed\/detail url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/coolapk.js
 # > 酷安_屏蔽热词@ddgksf2013
-^https?:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch url reject-dict
+^https?:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch url reject-200
 # > 酷安_酷品页推广@ddgksf2013
 https://api.coolapk.com/v6/page/dataList\?.*title=%E9%85 url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/coolapk.js
 
