@@ -6,7 +6,7 @@
 * @WechatID          墨鱼手记
 * @UpdateTime        2025-03-17
 * @ScriptFunction    快速浏览今天世界新闻
-* @ScriptURL         https://github.com/ddgksf2013/Scripts/raw/main/60s.js
+* @ScriptURL         https://github.com/ddgksf2013/Scripts/raw/master/60s.js
 * ==/UserScript==
 
 #============60秒-图片版============#
