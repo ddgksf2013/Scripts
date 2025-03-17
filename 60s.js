@@ -1,12 +1,12 @@
 /*
 * ==UserScript==
-* @ScriptName        每日60秒读懂世界[音频版]
+* @ScriptName        每日60秒读懂世界
 * @Author            ddgksf2013
 * @TgChannel         https://t.me/ddgksf2021
 * @WechatID          墨鱼手记
 * @UpdateTime        2025-03-17
 * @ScriptFunction    快速浏览今天世界新闻
-* @ScriptURL         https://github.com/ddgksf2013/Scripts/raw/main/60a.js
+* @ScriptURL         https://github.com/ddgksf2013/Scripts/raw/main/60s.js
 * ==/UserScript==
 
 #============60秒-图片版============#
