@@ -14,7 +14,7 @@
 
 [task_local]
 
-15 7,15 * * * https://github.com/ddgksf2013/Scripts/raw/master/ctrip.js, tag=Glados, img-url=https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/ctrip.png
+15 7,15 * * * https://github.com/ddgksf2013/Scripts/raw/master/ctrip.js, tag=Ctrip, img-url=https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/ctrip.png
 
 [mitm]
 
