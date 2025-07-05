@@ -111,7 +111,7 @@ function CheckAppletin(key) {
             resp.body = JSON.parse(resp.body?.startsWith('{') && resp.body || '{}');
             if (resp.body.resultCode == 200) {
                 return '小程序签到成功'
-            } else if (resp.body.resultCode == 400001) {
+            } else if (resp.body.resultCode == 500) {
                 return '已签过'
             } else if (resp.body.resultCode == 404001) {
                 return '登陆失效, 尝试移除账号...'
