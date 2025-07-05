@@ -1,6 +1,7 @@
 /********************************
 携程旅行签到脚本
 
+！！！Cookie获取完，记得禁用重写！！！
 
 配置脚本后登陆"携程旅行"微信小程序或"携程网页版"(https://m.ctrip.com)即可获取账号授权。多账号请勿"退出登陆"。
 
@@ -14,6 +15,10 @@
 [task_local]
 
 15 7,15 * * * https://github.com/ddgksf2013/Scripts/raw/master/ctrip.js, tag=Glados, img-url=https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/ctrip.png
+
+[mitm]
+
+hostname = m.ctrip.com
 
 *********************************/
 const $ = new Env('CTRIP_DAILY_BONUS');
