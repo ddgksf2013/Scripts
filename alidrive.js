@@ -9,7 +9,6 @@
 > 脚本功能：优化首页display
 > 额外说明：此脚本停止维护，请引用下面链接[广告净化+本地视频倍速、码率切换]
 > 引用链接：https://gist.githubusercontent.com/ddgksf2013/f4752e632fd3375ea2811985c5b635dc/raw/alicloud.js
-> 问题反馈：📮 ddgksf2013@163.com 📮
 > 特别说明：⛔⛔⛔
             本脚本仅供学习交流使用，禁止转载售卖
             ⛔⛔⛔
