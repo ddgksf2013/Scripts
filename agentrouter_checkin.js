@@ -2,6 +2,7 @@
  * AgentRouter 自动签到（Quantumult X / Loon / Surge / Node.js）
  * 站点：https://agentrouter.org/register?aff=cc9p
  * 脚本：https://github.com/ddgksf2013/Scripts/raw/master/agentrouter_checkin.js
+ * BOXJS: https://raw.githubusercontent.com/ddgksf2013/BoxJS/refs/heads/main/agentrouter.boxjs.json
  *
  * 原理：POST /api/user/login 使用账号密码登录；登录本身会触发每日签到。
  * 登录后继续请求 /api/log/self/，确认当天存在签到日志。
