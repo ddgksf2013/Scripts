@@ -58,8 +58,8 @@
  * # 财新Cookie抓取
  * ^https:\/\/gateway\.caixin\.com\/api\/(?:signin\/markRecord\/markRecordForCookie) url script-request-header https://github.com/ddgksf2013/Scripts/raw/master/caixin_daily.js
  *
- * [mitm]
- * hostname = gateway.caixin.com
+[mitm]
+hostname = gateway.caixin.com
  *
  *
  *************************
@@ -861,10 +861,6 @@ function quizFingerprint(activityCode, q) {
 
 // ==================== 分享文章 ====================
 async function doShare(auth) {
-  if (!auth.authentication || !auth.appinfo) {
-    return '缺少 App 授权，请手动分享一次抓 authentication/appinfo';
-  }
-
   const beforeTask = await getAssignmentStatus(auth);
   const shareTask = beforeTask.share;
   if (!shareTask || !isFiniteNumber(shareTask.num) || !isFiniteNumber(shareTask.trigusernum)) {
@@ -1045,12 +1041,13 @@ function appHeaders(auth, json = true) {
   const h = {
     Accept: '*/*',
     Cookie: auth.cookie,
-    appinfo: auth.appinfo,
-    authentication: auth.authentication,
     CXRequestDate: (Date.now() / 1000).toFixed(6),
     cxtransactionid: uuidv4().toUpperCase(),
     'User-Agent': auth.appUA || 'Caixin/8.6.0 (com.caixinmedia.client; build:8601; iOS 26.0.0) Alamofire/5.7.1',
   };
+  // 分享接口可仅凭登录 Cookie 请求；有 App 授权字段时再附加，缺失时不发送空请求头。
+  if (auth.appinfo) h.appinfo = auth.appinfo;
+  if (auth.authentication) h.authentication = auth.authentication;
   if (json) h['Content-Type'] = 'application/json';
   return h;
 }
@@ -1335,6 +1332,7 @@ if (typeof module !== 'undefined' && module.exports) {
     AI_CONFIG_KEYS,
     CFG,
     STORE_KEY,
+    appHeaders,
     buildAIQuizPrompt,
     buildAIRequest,
     canonicalKey,
