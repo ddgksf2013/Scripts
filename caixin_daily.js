@@ -400,15 +400,25 @@ async function captureAuth(req) {
     else next.webUA = ua;
   }
 
+  // 抓取到的 Cookie 本身必须包含 appinfo=... 才算有效。
+  // 请求头中独立的 appinfo / authentication 仍是可选的 App 请求头信息。
+  if (!isValidCapturedAuth(next)) return;
+
   next.updatedAt = new Date().toISOString();
   store.account[uid] = next;
   writeJSON(STORE_KEY, store);
 
   // 只在新增账号或关键凭据发生变化时通知，避免 rewrite 开着时疯狂弹窗。
   if (!existed || changed.length) {
-    const appReady = next.authentication && next.appinfo ? 'App授权✅' : 'App授权待抓取';
+    const appReady = next.authentication && next.appinfo
+      ? 'Cookie授权✅，App请求头✅'
+      : 'Cookie授权✅，App请求头不完整（不影响分享尝试）';
     pushNotify(NAME, existed ? '授权已更新' : '新增账号成功', `账号：${mask(uid)}\n${changed.length ? `更新：${uniq(changed).join('、')}\n` : ''}${appReady}`);
   }
+}
+
+function isValidCapturedAuth(auth) {
+  return !!(auth && String(auth.cookie || '').trim() && getCookie(auth.cookie, 'appinfo'));
 }
 
 function isCaptureRequestUrl(url) {
@@ -1338,6 +1348,7 @@ if (typeof module !== 'undefined' && module.exports) {
     canonicalKey,
     correctAnswerFromQuizResponse,
     extractAIResponseText,
+    isValidCapturedAuth,
     isCaptureRequestUrl,
     mergeCookies,
     normalizeAIEndpoint,
