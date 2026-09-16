@@ -27,7 +27,7 @@
  * [Script]
  * 财新每日任务 = type=cron,cronexp=5 0 * * *,wake-system=1,timeout=120,script-path=https://github.com/ddgksf2013/Scripts/raw/master/caixin_daily.js
  *
- * 财新Cookie抓取 = type=http-request,pattern=^https:\/\/gateway\.caixin\.com\/api\/(?:signin\/markRecord\/markRecordForCookie),script-path=https://github.com/ddgksf2013/Scripts/raw/master/caixin_daily.js,timeout=10
+ * 财新Cookie抓取 = type=http-request,pattern=^https:\/\/gateway\.caixin\.com\/api\/(?:signin\/markRecord\/markRecordForCookie|answeractivity\/userParticipateActivity\/(?:userGetActivityForCookie|findUserActivityDetailForCookie)|integral\/assignmentConfig\/findAssignmentConfigList|app-api\/integral\/getUserIntegral),script-path=https://github.com/ddgksf2013/Scripts/raw/master/caixin_daily.js,timeout=10
  *
  * [MITM]
  * hostname = gateway.caixin.com
@@ -40,7 +40,7 @@
  * [Script]
  * cron "5 0 * * *" tag=财新每日任务, script-path=https://github.com/ddgksf2013/Scripts/raw/master/caixin_daily.js, timeout=120
  *
- * http-request ^https:\/\/gateway\.caixin\.com\/api\/(?:signin\/markRecord\/markRecordForCookie) tag=财新Cookie抓取, script-path=https://github.com/ddgksf2013/Scripts/raw/master/caixin_daily.js, timeout=10, enable=true
+ * http-request ^https:\/\/gateway\.caixin\.com\/api\/(?:signin\/markRecord\/markRecordForCookie|answeractivity\/userParticipateActivity\/(?:userGetActivityForCookie|findUserActivityDetailForCookie)|integral\/assignmentConfig\/findAssignmentConfigList|app-api\/integral\/getUserIntegral) tag=财新Cookie抓取, script-path=https://github.com/ddgksf2013/Scripts/raw/master/caixin_daily.js, timeout=10, enable=true
  *
  * [MITM]
  * hostname = gateway.caixin.com
@@ -56,7 +56,7 @@
  *
  * [rewrite_local]
  * # 财新Cookie抓取
- * ^https:\/\/gateway\.caixin\.com\/api\/(?:signin\/markRecord\/markRecordForCookie) url script-request-header https://github.com/ddgksf2013/Scripts/raw/master/caixin_daily.js
+ * ^https:\/\/gateway\.caixin\.com\/api\/(?:signin\/markRecord\/markRecordForCookie|answeractivity\/userParticipateActivity\/(?:userGetActivityForCookie|findUserActivityDetailForCookie)|integral\/assignmentConfig\/findAssignmentConfigList|app-api\/integral\/getUserIntegral) url script-request-header https://github.com/ddgksf2013/Scripts/raw/master/caixin_daily.js
  *
 [mitm]
 hostname = gateway.caixin.com
