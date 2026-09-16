@@ -262,15 +262,14 @@ const DEFAULT_AI_USER_AGENT = 'claude-cli/2.1.161 (external, cli)';
 const DEFAULT_QUIZ_ACTIVITY = '2026ZSWD202512261150';
 const QUIZ_CORE_JS = 'https://datanews.caixin.com/mobile/article/tools/appQuiz2401/js/core.js';
 
-// ==================== 本地行为配置 ====================
 const CFG = {
   shareEnabled: true,
-  shareTimes: 0,          // 0 = 按财新服务器当天剩余分享次数自动补足；1~5 = 最多执行对应次数
+  shareTimes: 0,
   quizEnabled: true,
-  quizAutoSubmit: true,   // 自动提交；设为 false 时只报告候选答案
+  quizAutoSubmit: true,
 
   notify: true,
-  debug: true,          // 调试日志可能包含题目和接口响应，排障时再临时开启
+  debug: true,
   delayMin: 850,
   delayMax: 1500,
   requestTimeout: 15000,
@@ -312,7 +311,6 @@ async function main() {
   }
 }
 
-// ==================== 主流程 ====================
 async function runAccount(auth, index, total) {
   const label = accountLabel(auth, index, total);
   const lines = [label];
@@ -354,7 +352,6 @@ async function runAccount(auth, index, total) {
   return lines;
 }
 
-// ==================== 多账号授权抓取 ====================
 async function captureAuth(req) {
   if (!isCaptureRequestUrl(req && req.url)) return;
   const headers = lowerHeaders(req.headers || {});
@@ -362,7 +359,6 @@ async function captureAuth(req) {
   let uidRaw = getCookie(incomingCookie, 'SA_USER_UID') || getCookie(incomingCookie, 'UID') || '';
   const store = getStore();
 
-  // App 请求偶尔不带 UID：只按已有 authentication 精确匹配，绝不猜测账号以免串号。
   if (!uidRaw && headers.authentication) {
     const matched = Object.values(store.account || {}).find(a => a && a.authentication === headers.authentication);
     if (matched) uidRaw = matched.uidRaw || matched.uid || '';
@@ -400,15 +396,12 @@ async function captureAuth(req) {
     else next.webUA = ua;
   }
 
-  // 抓取到的 Cookie 本身必须包含 appinfo=... 才算有效。
-  // 请求头中独立的 appinfo / authentication 仍是可选的 App 请求头信息。
   if (!isValidCapturedAuth(next)) return;
 
   next.updatedAt = new Date().toISOString();
   store.account[uid] = next;
   writeJSON(STORE_KEY, store);
 
-  // 只在新增账号或关键凭据发生变化时通知，避免 rewrite 开着时疯狂弹窗。
   if (!existed || changed.length) {
     const appReady = next.authentication && next.appinfo
       ? 'Cookie授权✅，App请求头✅'
@@ -431,7 +424,6 @@ function getStore() {
   return { account: {} };
 }
 
-// ==================== 签到 ====================
 async function doCheckin(auth) {
   try {
     const r = await httpRequest({
@@ -452,7 +444,6 @@ async function doCheckin(auth) {
   }
 }
 
-// ==================== 知识问答：BoxJS AI，不保存题库 ====================
 async function doQuiz(auth) {
   try {
     const activityCode = await getQuizActivityCode();
@@ -539,7 +530,6 @@ async function doQuiz(auth) {
       }
       const goods = sj.data.activityParticipate && sj.data.activityParticipate.goodsName ? sj.data.activityParticipate.goodsName : '';
       const correction = correct && String(correct) !== String(answer) ? `，正确 ${correct}` : '';
-      // correct 只用于当前通知，不写入任何题库。
       return `${ok ? '答对' : '答错'}（${resolved.source}：${answer}${correction}）${goods ? `，奖励 ${goods}` : ''}`;
     }
 
@@ -620,7 +610,6 @@ function buildAIRequest(q, cfg) {
       input: prompt,
       max_output_tokens: 500,
     };
-    // 官方 DeepSeek Responses API 是无状态接口，不发送 OpenAI 的 store 参数。
     if (!officialDeepSeek) body.store = false;
     if (officialDeepSeek) body.reasoning = { effort: 'none' };
     if (cfg.webSearch) body.tools = [{ type: 'web_search' }];
@@ -707,8 +696,6 @@ function parseAIJSON(text) {
   const direct = safeJSON(raw);
   if (direct && typeof direct === 'object') return direct;
 
-  // 部分模型会在最终 JSON 前输出推理文字，甚至在文字中重复 JSON 示例。
-  // 从后向前选择可独立解析的对象，优先采用含答案字段的最终对象。
   const candidates = [];
   let start = -1, depth = 0, inString = false, escaped = false;
   for (let i = 0; i < raw.length; i += 1) {
@@ -869,7 +856,6 @@ function quizFingerprint(activityCode, q) {
   ]);
 }
 
-// ==================== 分享文章 ====================
 async function doShare(auth) {
   const beforeTask = await getAssignmentStatus(auth);
   const shareTask = beforeTask.share;
@@ -888,7 +874,6 @@ async function doShare(auth) {
   const articleIds = await getLatestArticleIds(auth, target);
   if (!articleIds.length) return '未取得文章 ID';
 
-  // 同一文章重复分享经常只返回接口成功而不增加任务进度，绝不复制 ID 凑次数。
   target = Math.min(target, articleIds.length);
 
   let requestOk = 0;
@@ -999,7 +984,6 @@ async function getAssignmentStatus(auth) {
   }
 }
 
-// ==================== 积分 ====================
 async function getPointsValue(auth) {
   const uidRaw = auth.uidRaw || auth.uid || getCookie(auth.cookie, 'SA_USER_UID') || getCookie(auth.cookie, 'UID');
   if (!uidRaw) return null;
@@ -1020,7 +1004,6 @@ async function getPointsValue(auth) {
     debug('points web error', errorText(e));
   }
 
-  // App 接口兜底
   if (auth.authentication && auth.appinfo) {
     try {
       const r = await httpRequest({
@@ -1036,7 +1019,6 @@ async function getPointsValue(auth) {
   return null;
 }
 
-// ==================== 请求头 ====================
 function webHeaders(auth, origin, referer) {
   return {
     Accept: 'application/json, text/plain, */*',
@@ -1055,14 +1037,12 @@ function appHeaders(auth, json = true) {
     cxtransactionid: uuidv4().toUpperCase(),
     'User-Agent': auth.appUA || 'Caixin/8.6.0 (com.caixinmedia.client; build:8601; iOS 26.0.0) Alamofire/5.7.1',
   };
-  // 分享接口可仅凭登录 Cookie 请求；有 App 授权字段时再附加，缺失时不发送空请求头。
   if (auth.appinfo) h.appinfo = auth.appinfo;
   if (auth.authentication) h.authentication = auth.authentication;
   if (json) h['Content-Type'] = 'application/json';
   return h;
 }
 
-// ==================== 题型工具 ====================
 function normalizeAnswer(ans, type, preserveKnown) {
   let raw = String(ans ?? '').trim();
   if (!raw) return '';
@@ -1090,7 +1070,6 @@ function parseOptions(v) {
   return Array.isArray(j) ? j : [];
 }
 
-// ==================== 通用工具 ====================
 async function httpRequest(opts) {
   const method = String(opts && opts.method || 'GET').toUpperCase();
   const retries = method === 'GET' ? Math.max(0, Number(CFG.requestRetries) || 0) : 0;
@@ -1336,7 +1315,6 @@ function debug(...args) {
   try { console.log(`[${NAME}]`, ...args.map(x => typeof x === 'string' ? x : JSON.stringify(x))); } catch (_) {}
 }
 
-// Node.js 仅用于本地单元测试；代理工具中直接执行主流程。
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     AI_CONFIG_KEYS,
