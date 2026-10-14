@@ -247,6 +247,7 @@ hostname = gateway.caixin.com
 
 
 
+
 const NAME = '财新每日任务';
 const STORE_KEY = 'CAIXIN_DAILY_AUTH';
 const AI_CONFIG_KEYS = {
@@ -559,38 +560,84 @@ async function resolveQuizAnswer(q) {
     for (let attempt = 0; attempt < AI_OUTPUT_TOKEN_LIMITS.length; attempt += 1) {
       const maxOutputTokens = AI_OUTPUT_TOKEN_LIMITS[attempt];
       const request = buildAIRequest(q, { ...cfg, url: endpoint.url, mode: endpoint.mode, maxOutputTokens });
-      const r = await httpRequest({
-        url: endpoint.url,
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'User-Agent': cfg.userAgent,
-          ...(cfg.key ? { Authorization: `Bearer ${cfg.key}` } : {}),
-        },
-        body: JSON.stringify(request),
-        _timeoutMs: cfg.timeout,
-      });
+      const startedAt = Date.now();
+      debug('quiz.ai.request', { attempt: attempt + 1, mode: endpoint.mode, timeoutMs: cfg.timeout, maxOutputTokens });
+      let r;
+      try {
+        r = await httpRequest({
+          url: endpoint.url,
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'User-Agent': cfg.userAgent,
+            ...(cfg.key ? { Authorization: `Bearer ${cfg.key}` } : {}),
+          },
+          body: JSON.stringify(request),
+          _timeoutMs: cfg.timeout,
+          _returnErrorResponse: true,
+        });
+      } catch (e) {
+        const stage = aiFailureStage(e);
+        debug('quiz.ai.result', { attempt: attempt + 1, mode: endpoint.mode, elapsedMs: Date.now() - startedAt, httpStatus: 0, stage });
+        if (stage === 'timeout') return { answer: '', source: `AI 请求超时（${Math.round(cfg.timeout / 1000)}秒）` };
+        if (stage === 'cancelled') return { answer: '', source: 'AI 请求被取消（连接或网关在响应前中断）' };
+        return { answer: '', source: 'AI 网络请求失败，请查看 QX 连接状态' };
+      }
       const j = safeJSON(r.body);
-      debug(`quiz.ai.response.${attempt + 1}`, sanitizeAIResponse(j || r.body));
       const status = Number(r.statusCode || r.status || 0);
-      if (status >= 400 || !j) return { answer: '', source: `AI 请求失败${apiMsg(j) || (status ? `（HTTP ${status}）` : '')}` };
-      if (j.error) return { answer: '', source: `AI 请求失败${apiMsg(j.error)}` };
+      if (status >= 400 || j && j.error) {
+        const stage = aiFailureStage(j || r.body);
+        debug('quiz.ai.result', { attempt: attempt + 1, mode: endpoint.mode, elapsedMs: Date.now() - startedAt, httpStatus: status, stage });
+        if (stage === 'cancelled') return { answer: '', source: `AI 网关取消请求${status ? `（HTTP ${status}）` : ''}` };
+        if (stage === 'timeout') return { answer: '', source: `AI 网关请求超时${status ? `（HTTP ${status}）` : ''}` };
+        return { answer: '', source: `AI 请求失败${status ? `（HTTP ${status}）` : ''}` };
+      }
+      if (!j) {
+        const stage = aiFailureStage(r.body);
+        debug('quiz.ai.result', { attempt: attempt + 1, mode: endpoint.mode, elapsedMs: Date.now() - startedAt, httpStatus: status, stage: stage === 'http_error' ? 'invalid_response' : stage });
+        if (stage === 'cancelled') return { answer: '', source: 'AI 网关取消请求' };
+        if (stage === 'timeout') return { answer: '', source: 'AI 网关请求超时' };
+        return { answer: '', source: 'AI 未返回有效 JSON 响应' };
+      }
 
       const text = extractAIResponseText(j);
       const payload = parseAIJSON(text);
       const answer = validateAIAnswerPayload(payload, q);
-      if (answer) return { answer, safe: true, source: `AI ${cfg.model}` };
-      if (!isAIOutputLimitReached(j)) return { answer: '', source: 'AI 返回的答案格式无效' };
+      if (answer) {
+        debug('quiz.ai.result', { attempt: attempt + 1, mode: endpoint.mode, elapsedMs: Date.now() - startedAt, httpStatus: status, stage: 'answer' });
+        return { answer, safe: true, source: `AI ${cfg.model}` };
+      }
+      if (!isAIOutputLimitReached(j)) {
+        const messageStage = aiFailureStage(j.error || j.message || j.msg || '');
+        const stage = messageStage === 'http_error' ? 'invalid_answer' : messageStage;
+        debug('quiz.ai.result', { attempt: attempt + 1, mode: endpoint.mode, elapsedMs: Date.now() - startedAt, httpStatus: status, stage });
+        if (stage === 'cancelled') return { answer: '', source: 'AI 网关取消请求' };
+        if (stage === 'timeout') return { answer: '', source: 'AI 网关请求超时' };
+        return { answer: '', source: 'AI 返回的答案格式无效' };
+      }
+      debug('quiz.ai.result', { attempt: attempt + 1, mode: endpoint.mode, elapsedMs: Date.now() - startedAt, httpStatus: status, stage: 'output_limit' });
       if (attempt + 1 === AI_OUTPUT_TOKEN_LIMITS.length) {
         return { answer: '', source: `AI 思考内容过长，${maxOutputTokens} tokens 内未生成最终答案` };
       }
-      debug('quiz.ai.retry', `输出达到 ${maxOutputTokens} tokens，扩大额度后重试`);
     }
     return { answer: '', source: 'AI 未生成最终答案' };
   } catch (e) {
-    return { answer: '', source: `AI 错误（${shortError(e)}）` };
+    debug('quiz.ai.result', { stage: 'script_error' });
+    return { answer: '', source: `AI 处理失败（${shortError(e)}）` };
   }
+}
+
+function aiFailureStage(value) {
+  let message = '';
+  if (typeof value === 'string') message = value;
+  else if (value && typeof value === 'object') {
+    const detail = value.error || value.message || value.msg || value;
+    message = typeof detail === 'string' ? detail : detail && typeof detail.message === 'string' ? detail.message : JSON.stringify(detail);
+  }
+  if (/client cancel(?:led|ed)|request cancel(?:led|ed)|context cancel(?:led|ed)|取消请求|请求被取消/i.test(message)) return 'cancelled';
+  if (/timeout|timed out|超时/i.test(message)) return 'timeout';
+  return 'http_error';
 }
 
 function getAIConfig() {
@@ -1099,15 +1146,20 @@ async function httpRequest(opts) {
   const method = String(opts && opts.method || 'GET').toUpperCase();
   const retries = method === 'GET' ? Math.max(0, Number(CFG.requestRetries) || 0) : 0;
   const timeout = Number(opts && opts._timeoutMs) || CFG.requestTimeout;
+  const returnErrorResponse = !!(opts && opts._returnErrorResponse);
   const requestOpts = { ...(opts || {}) };
   delete requestOpts._timeoutMs;
+  delete requestOpts._returnErrorResponse;
+  if (opts && opts._timeoutMs && typeof $task !== 'undefined' && $task && typeof $task.fetch === 'function') {
+    requestOpts.timeout = timeout;
+  }
   let lastError;
 
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       const response = await withTimeout(runtimeFetch(requestOpts), timeout);
       const status = Number(response && (response.statusCode || response.status) || 0);
-      if (status >= 500 || status === 429) throw new Error(`HTTP ${status}`);
+      if (!returnErrorResponse && (status >= 500 || status === 429)) throw new Error(`HTTP ${status}`);
       return response || { statusCode: 0, headers: {}, body: '' };
     } catch (e) {
       lastError = e;
